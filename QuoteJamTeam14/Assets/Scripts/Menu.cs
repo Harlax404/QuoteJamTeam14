@@ -20,7 +20,12 @@ public class Menu : MonoBehaviour
 
     void Start()
     {
-        if(creditPanel.activeSelf)
+        if (mainPanel.activeSelf == false)
+        {
+            mainPanel.SetActive(true);
+        }
+
+        if (creditPanel.activeSelf == true)
         {
             creditPanel.SetActive(false);
         }

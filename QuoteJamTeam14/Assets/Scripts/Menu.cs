@@ -1,18 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private string MainScene;
+
+    [SerializeField]
+    private GameObject mainPanel;
+
+    [SerializeField]
+    private GameObject creditPanel;
+
+    private bool mainpanelActiveSelf = true;
+    private bool creditpanelActiveSelf = false;
+
     void Start()
     {
-        
+        if(creditPanel.activeSelf)
+        {
+            creditPanel.SetActive(false);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LaunchGame()
     {
-        
+        SceneManager.LoadScene(MainScene);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void DisplayCredit()
+    {
+        mainpanelActiveSelf = !mainpanelActiveSelf;
+        creditpanelActiveSelf = !creditpanelActiveSelf;
+
+        mainPanel.SetActive(mainpanelActiveSelf);
+        creditPanel.SetActive(creditpanelActiveSelf);
+    }
+
 }

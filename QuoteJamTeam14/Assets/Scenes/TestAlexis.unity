@@ -378,6 +378,7 @@ MonoBehaviour:
   posPlayerInput1: {fileID: 1498608707}
   posPlayerInput2: {fileID: 1308602381}
   height: 1.3
+  fallDuration: 0.5
   inputSprites:
   - {fileID: 21300000, guid: 8ca1a1cfec08fe941b162e22964b479a, type: 3}
   - {fileID: 21300000, guid: f2150fb6afebe2c41a49b2b2e5ca66b9, type: 3}
@@ -1647,7 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3b4f27f659d684aa123fbc14ead0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerValue: 15
+  timerValue: 5
   countdownValue: 3
   timerText: {fileID: 1548287604}
   startUI: {fileID: 41136548}

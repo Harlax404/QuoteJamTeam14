@@ -69,6 +69,8 @@ public class Timer : MonoBehaviour {
     private IEnumerator InputCheckThreadPlayer1() {
         if(!p1Ready && Input.GetKeyDown(KeyCode.LeftControl)) {
             p1Ready = true;
+            p1NotReadyText.SetActive(false);
+            p1ReadyText.SetActive(true);
             if(p2Ready) 
                 startGame();
         }
@@ -79,6 +81,8 @@ public class Timer : MonoBehaviour {
     private IEnumerator InputCheckThreadPlayer2() {
         if(!p2Ready && Input.GetKeyDown(KeyCode.RightControl)) {
             p2Ready = true;
+            p2NotReadyText.SetActive(false);
+            p2ReadyText.SetActive(true);
             if(p1Ready) 
                 startGame();
         }

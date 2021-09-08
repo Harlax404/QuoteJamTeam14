@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Bonbon : MonoBehaviour
 {
-    int playerId;
-    ArrayList listInput;
-    Sprite emballage;
-    Sprite bonbon;
+    //int playerId;
+    //ArrayList listInput;
     [SerializeField] SpriteRenderer renderer;
 
-    public void Init(ArrayList inputs, int _playerId, Sprite emballage, Sprite bonbon)
-    {
-        listInput = inputs;
-        playerId = _playerId;
+    [HideInInspector] public int score;
 
-        renderer.sprite = emballage;
+    public void Init(/*ArrayList inputs, int _playerId,*/ Sprite _sprite, int _score)
+    {
+        //listInput = inputs;
+        //playerId = _playerId;
+
+        renderer.sprite = _sprite;
+        score = _score;
     }
 }

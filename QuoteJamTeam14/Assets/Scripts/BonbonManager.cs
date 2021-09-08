@@ -21,7 +21,9 @@ public class BonbonManager : MonoBehaviour
     [SerializeField] float fallDuration = 0.5f;
 
     private Bonbon currentBBJ1;
+    private bool isEmballageP1 = true;
     private Bonbon currentBBJ2;
+    private bool isEmballageP2 = true;
 
     private List<InputObject> inputPlayer1 = new List<InputObject>();
     private List<InputObject> inputPlayer2 = new List<InputObject>();
@@ -29,8 +31,6 @@ public class BonbonManager : MonoBehaviour
     [SerializeField] List<Sprite> inputSprites = new List<Sprite>();
     [SerializeField] List<Sprite> bonbonSprites = new List<Sprite>();
     [SerializeField] List<Sprite> emballageSprites = new List<Sprite>();
-
-    
 
     public static BonbonManager Get;
     private void Awake()
@@ -74,23 +74,56 @@ public class BonbonManager : MonoBehaviour
         
         int bonbonSpriteIndex = Random.Range(0, bonbonSprites.Count);
         int emballageSpriteIndex = Random.Range(0, emballageSprites.Count);
-        bb.Init(inputs, playerId, emballageSprites[emballageSpriteIndex], bonbonSprites[bonbonSpriteIndex]);
+        if (playerId == 1)
+        {
+            if (isEmballageP1)
+            {
+                bb.Init(emballageSprites[emballageSpriteIndex], 50);
+            }
+            else
+            {
+                bb.Init(bonbonSprites[bonbonSpriteIndex], 50);
+            }
+        }
+        else
+        {
+            if (isEmballageP2)
+            {
+                bb.Init(emballageSprites[emballageSpriteIndex], 50);
+            }
+            else
+            {
+                bb.Init(bonbonSprites[bonbonSpriteIndex], 50);
+            }
+        }
         PlayerInput.Get.SetListInput(playerId == 1, inputs);
         return bb;
     }
 
-    public void DestroyBonbon(Bonbon bb)
+    public void DestroyBonbon(Bonbon bb, bool forReset = false)
     {
         if (bb == currentBBJ1)
         {
             // TO DO : add animation
             Destroy(bb.gameObject);
+            if (!forReset && !isEmballageP1)
+            {
+                ScoreManager.Get.AddScrore(currentBBJ1.score, 1);
+            }
+            if (forReset) ResetEmballageStatus();
+            else SwapEmballageStatus(1);
             currentBBJ1 = Spawnbonbon(posPlayer1, 1, posPlayerInput1);
         }
         else if (bb == currentBBJ2)
         {
             // TO DO : add animation
             Destroy(bb.gameObject);
+            if (!forReset && !isEmballageP2)
+            {
+                ScoreManager.Get.AddScrore(currentBBJ2.score, 2);
+            }
+            if (forReset) ResetEmballageStatus();
+            else SwapEmballageStatus(2);
             currentBBJ2 = Spawnbonbon(posPlayer2, 2, posPlayerInput2);
         }
         else
@@ -137,13 +170,32 @@ public class BonbonManager : MonoBehaviour
             Destroy(obj.gameObject);
         }
         inputPlayer1.Clear();
-        DestroyBonbon(currentBBJ1);
+        DestroyBonbon(currentBBJ1, true);
 
         foreach (InputObject obj in inputPlayer2)
         {
             Destroy(obj.gameObject);
         }
         inputPlayer2.Clear();
-        DestroyBonbon(currentBBJ2);
+        DestroyBonbon(currentBBJ2, true);
+    }
+
+    private void SwapEmballageStatus(int playerId)
+    {
+        if (playerId == 1)
+        {
+            isEmballageP1 = !isEmballageP1;
+        }
+        else if (playerId == 2)
+        {
+            isEmballageP2 = !isEmballageP2;
+        }
+        else Debug.LogError("Wrong playerId");
+    }
+
+    private void ResetEmballageStatus()
+    {
+        isEmballageP1 = true;
+        isEmballageP2 = true;
     }
 }

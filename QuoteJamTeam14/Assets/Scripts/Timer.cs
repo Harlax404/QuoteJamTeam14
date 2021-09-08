@@ -20,6 +20,16 @@ public class Timer : MonoBehaviour {
 
     private bool gameStarted, gameCountdown, p1Ready, p2Ready;
 
+    public static Timer Get;
+    private void Awake()
+    {
+        if (Get == null)
+        {
+            Get = this;
+        }
+        else Destroy(this.gameObject);
+    }
+
     void Start() {
         matchStatusChange(false, true);
         gameStarted = gameCountdown = p1Ready = p2Ready = false;
@@ -59,8 +69,6 @@ public class Timer : MonoBehaviour {
     private IEnumerator InputCheckThreadPlayer1() {
         if(!p1Ready && Input.GetKeyDown(KeyCode.LeftControl)) {
             p1Ready = true;
-            p1NotReadyText.SetActive(false);
-            p1ReadyText.SetActive(true);
             if(p2Ready) 
                 startGame();
         }
@@ -71,13 +79,15 @@ public class Timer : MonoBehaviour {
     private IEnumerator InputCheckThreadPlayer2() {
         if(!p2Ready && Input.GetKeyDown(KeyCode.RightControl)) {
             p2Ready = true;
-            p2NotReadyText.SetActive(false);
-            p2ReadyText.SetActive(true);
             if(p1Ready) 
                 startGame();
         }
 
          yield return null;
+    }
+
+    public bool getGameStarted() {
+        return gameStarted;
     }
 
     private void matchStatusChange(bool status, bool init) {    // true -> match just ended
@@ -109,6 +119,7 @@ public class Timer : MonoBehaviour {
 
     public void RestartGame() {
         startUI.SetActive(true);
+        matchStatusChange(false, true);
         BonbonManager.Get.DestroyInput(1);
         BonbonManager.Get.DestroyInput(2);
     }

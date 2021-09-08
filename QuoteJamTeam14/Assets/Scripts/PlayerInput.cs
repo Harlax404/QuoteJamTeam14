@@ -53,7 +53,7 @@ public class PlayerInput : MonoBehaviour {
     }
 
     void Update() {
-        if(Input.anyKeyDown) {
+        if(Timer.Get.getGameStarted() && Input.anyKeyDown) {
             StartCoroutine("InputCheckThreadPlayer1");
             StartCoroutine("InputCheckThreadPlayer2");
         }

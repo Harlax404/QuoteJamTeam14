@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 327792393}
   - component: {fileID: 327792392}
   m_Layer: 5
-  m_Name: CreditNameTextLeft
+  m_Name: CreditsNameTextLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 782154466}
   - component: {fileID: 782154465}
   m_Layer: 5
-  m_Name: CreditButton
+  m_Name: CreditsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 855958276}
   - component: {fileID: 855958275}
   m_Layer: 5
-  m_Name: CreditPannel
+  m_Name: CreditsPannel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -609,8 +609,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1855077131}
   - {fileID: 1082369995}
+  - {fileID: 1855077131}
   m_Father: {fileID: 1824594569}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -800,7 +800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1082369995}
   m_Layer: 5
-  m_Name: CreditName
+  m_Name: CreditsName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -820,7 +820,7 @@ RectTransform:
   - {fileID: 327792391}
   - {fileID: 1510687143}
   m_Father: {fileID: 855958274}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 1100025613}
   - component: {fileID: 1100025612}
   m_Layer: 5
-  m_Name: StartTextButton
+  m_Name: ExitTextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -897,9 +897,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Close
-
-'
+  m_Text: EXIT GAME
 --- !u!222 &1100025613
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -920,7 +918,7 @@ GameObject:
   - component: {fileID: 1510687145}
   - component: {fileID: 1510687144}
   m_Layer: 5
-  m_Name: CreditNameTextRight
+  m_Name: CreditsNameTextRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1000,7 +998,7 @@ GameObject:
   - component: {fileID: 1706297771}
   - component: {fileID: 1706297770}
   m_Layer: 5
-  m_Name: Image
+  m_Name: MenuBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1122,7 +1120,7 @@ GameObject:
   - component: {fileID: 1781116074}
   - component: {fileID: 1781116073}
   m_Layer: 5
-  m_Name: CloseGameButton
+  m_Name: ExitGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1357,7 +1355,7 @@ GameObject:
   - component: {fileID: 1855077133}
   - component: {fileID: 1855077132}
   m_Layer: 5
-  m_Name: CreditButtonClose
+  m_Name: CreditsButtonClose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1376,7 +1374,7 @@ RectTransform:
   m_Children:
   - {fileID: 1958683923}
   m_Father: {fileID: 855958274}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1489,7 +1487,7 @@ GameObject:
   - component: {fileID: 1864164450}
   - component: {fileID: 1864164449}
   m_Layer: 5
-  m_Name: CreditTextButton
+  m_Name: CreditsTextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1547,9 +1545,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Credit
-
-'
+  m_Text: CREDITS
 --- !u!222 &1864164450
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1653,7 +1649,7 @@ GameObject:
   - component: {fileID: 1958683925}
   - component: {fileID: 1958683924}
   m_Layer: 5
-  m_Name: CreditTextButton
+  m_Name: CreditsTextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

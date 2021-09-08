@@ -71,6 +71,7 @@ public class BonbonManager : MonoBehaviour
         int bonbonSpriteIndex = Random.Range(0, bonbonSprites.Count);
         int emballageSpriteIndex = Random.Range(0, emballageSprites.Count);
         bb.Init(inputs, playerId, emballageSprites[emballageSpriteIndex], bonbonSprites[bonbonSpriteIndex]);
+        PlayerInput.Get.SetListInput(playerId == 1, inputs);
         return bb;
     }
 
@@ -98,6 +99,10 @@ public class BonbonManager : MonoBehaviour
     {
         if (playerId == 1)
         {
+            foreach(InputObject obj in inputPlayer1)
+            {
+                obj.transform.position -= height * Vector3.up;
+            }
             Destroy(inputPlayer1[0].gameObject);
             inputPlayer1.RemoveAt(0);
             if (inputPlayer1.Count == 0)

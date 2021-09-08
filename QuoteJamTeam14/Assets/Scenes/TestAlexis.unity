@@ -224,10 +224,10 @@ MonoBehaviour:
   posPlayerInput2: {fileID: 1308602381}
   height: 1.3
   inputSprites:
-  - {fileID: -9095717837082945937, guid: 2d7b9e86b96f67a4abdd869105dd7535, type: 3}
-  - {fileID: -2413806693520163455, guid: 812c7a3e4c938c94a821c04b017477eb, type: 3}
-  - {fileID: 7482667652216324306, guid: 5f7bc5243c16ab044910ec47e8edc118, type: 3}
-  - {fileID: 2747690628134850419, guid: 2e44503ba9ae85d4482ce4715d9ac9c8, type: 3}
+  - {fileID: 21300000, guid: 8ca1a1cfec08fe941b162e22964b479a, type: 3}
+  - {fileID: 21300000, guid: f2150fb6afebe2c41a49b2b2e5ca66b9, type: 3}
+  - {fileID: 21300000, guid: 16cbe4049370fb7449d7b8e5de7b3971, type: 3}
+  - {fileID: 21300000, guid: 8f17741d18d0bfa4cbfc54a823893243, type: 3}
   bonbonSprites:
   - {fileID: -5177388603050735206, guid: 2e841c91fc540b946af45fadc00b4339, type: 3}
   emballageSprites:

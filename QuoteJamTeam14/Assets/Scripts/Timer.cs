@@ -126,6 +126,7 @@ public class Timer : MonoBehaviour {
     public void RestartGame() 
     {
         BonbonManager.Get.DestroyAllInput();
+        ScoreManager.Get.ResetScore();
         startUI.SetActive(true);
         matchStatusChange(false, true);
     }

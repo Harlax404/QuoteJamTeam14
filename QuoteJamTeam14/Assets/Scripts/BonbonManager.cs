@@ -30,6 +30,8 @@ public class BonbonManager : MonoBehaviour
     [SerializeField] List<Sprite> bonbonSprites = new List<Sprite>();
     [SerializeField] List<Sprite> emballageSprites = new List<Sprite>();
 
+    
+
     public static BonbonManager Get;
     private void Awake()
     {
@@ -103,7 +105,7 @@ public class BonbonManager : MonoBehaviour
         {
             foreach(InputObject obj in inputPlayer1)
             {
-                StartCoroutine(InputFall(obj));
+                obj.StartFall(height, fallDuration);
             }
             Destroy(inputPlayer1[0].gameObject);
             inputPlayer1.RemoveAt(0);
@@ -116,7 +118,7 @@ public class BonbonManager : MonoBehaviour
         {
             foreach (InputObject obj in inputPlayer2)
             {
-                StartCoroutine(InputFall(obj));
+                obj.StartFall(height, fallDuration);
             }
             Destroy(inputPlayer2[0].gameObject);
             inputPlayer2.RemoveAt(0);
@@ -128,25 +130,20 @@ public class BonbonManager : MonoBehaviour
         else Debug.LogError("Wrong playerId");
     }
 
-    IEnumerator InputFall(InputObject obj)
+    public void DestroyAllInput()
     {
-        float posDepart = obj.transform.position.y;
-        float posFinal = posDepart - height;
-        float posIntermediaire = 0;
-
-        float timer = 0f;
-
-        while (timer <= fallDuration)
+        foreach (InputObject obj in inputPlayer1)
         {
-            timer += Time.deltaTime;
-
-            posIntermediaire = Mathf.Lerp(posDepart, posFinal, timer/fallDuration);
-
-            obj.transform.position = new Vector3(obj.transform.position.x, posIntermediaire, obj.transform.position.z);
-
-            yield return null;
+            Destroy(obj.gameObject);
         }
+        inputPlayer1.Clear();
+        DestroyBonbon(currentBBJ1);
 
-        obj.transform.position = new Vector3(obj.transform.position.x, posFinal, obj.transform.position.z);
+        foreach (InputObject obj in inputPlayer2)
+        {
+            Destroy(obj.gameObject);
+        }
+        inputPlayer2.Clear();
+        DestroyBonbon(currentBBJ2);
     }
 }

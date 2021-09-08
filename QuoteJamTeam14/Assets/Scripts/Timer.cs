@@ -12,6 +12,8 @@ public class Timer : MonoBehaviour {
     [SerializeField, Range(1.0f, 10.0f)]
     private float countdownValue = 3.0f;
 
+    public bool restart = false;
+
     public Text timerText;
     [SerializeField]
     private GameObject startUI, p1NotReadyText, p1ReadyText, p2NotReadyText, p2ReadyText, restartButton, leaveButton;
@@ -121,11 +123,11 @@ public class Timer : MonoBehaviour {
         curTime = countdownValue;
     }
 
-    public void RestartGame() {
+    public void RestartGame() 
+    {
+        BonbonManager.Get.DestroyAllInput();
         startUI.SetActive(true);
         matchStatusChange(false, true);
-        BonbonManager.Get.DestroyInput(1);
-        BonbonManager.Get.DestroyInput(2);
     }
 
     public void LeaveGame() {

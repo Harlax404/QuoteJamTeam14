@@ -18,6 +18,8 @@ public class BonbonManager : MonoBehaviour
     [SerializeField] Transform posPlayerInput2;
     [SerializeField] float height = 10;
 
+    [SerializeField] float fallDuration = 0.5f;
+
     private Bonbon currentBBJ1;
     private Bonbon currentBBJ2;
 
@@ -101,7 +103,7 @@ public class BonbonManager : MonoBehaviour
         {
             foreach(InputObject obj in inputPlayer1)
             {
-                obj.transform.position -= height * Vector3.up;
+                StartCoroutine(InputFall(obj));
             }
             Destroy(inputPlayer1[0].gameObject);
             inputPlayer1.RemoveAt(0);
@@ -112,6 +114,10 @@ public class BonbonManager : MonoBehaviour
         }
         else if (playerId == 2)
         {
+            foreach (InputObject obj in inputPlayer2)
+            {
+                StartCoroutine(InputFall(obj));
+            }
             Destroy(inputPlayer2[0].gameObject);
             inputPlayer2.RemoveAt(0);
             if (inputPlayer2.Count == 0)
@@ -120,5 +126,27 @@ public class BonbonManager : MonoBehaviour
             }
         }
         else Debug.LogError("Wrong playerId");
+    }
+
+    IEnumerator InputFall(InputObject obj)
+    {
+        float posDepart = obj.transform.position.y;
+        float posFinal = posDepart - height;
+        float posIntermediaire = 0;
+
+        float timer = 0f;
+
+        while (timer <= fallDuration)
+        {
+            timer += Time.deltaTime;
+
+            posIntermediaire = Mathf.Lerp(posDepart, posFinal, timer/fallDuration);
+
+            obj.transform.position = new Vector3(obj.transform.position.x, posIntermediaire, obj.transform.position.z);
+
+            yield return null;
+        }
+
+        obj.transform.position = new Vector3(obj.transform.position.x, posFinal, obj.transform.position.z);
     }
 }

@@ -69,7 +69,7 @@ public class ScoreManager : MonoBehaviour
             multiplierTextP1.text = "x" + multiplierP1;
         } else {
             multiplierP2 = 1;
-            multiplierTextP2.text = "x" + multiplierP1;
+            multiplierTextP2.text = "x" + multiplierP2;
         }
     }
     

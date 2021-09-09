@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class FeedbackManager : MonoBehaviour {
 
+    [Header("VS Animation:")]
+    [SerializeField, Range(0.1f, 10.0f)]
+    private float animationTime = 0.5f;   // for each in and out anim
+    [SerializeField]
+    private GameObject eclaireBas;
+    [SerializeField]
+    private Vector3 eclaireBasIn = new Vector3(-1.01f, -2.19f, 0f);
+    [SerializeField]
+    private Vector3 eclaireBasOut = new Vector3(-2.7f, -7.89f, 0f);
+    [SerializeField]
+
+    private GameObject eclaireHaut;
+    [SerializeField]
+    private Vector3 eclaireHautIn = new Vector3(0.54f, 2.23f, 0f);
+    [SerializeField]
+    private Vector3 eclaireHautOut = new Vector3(3.13f, 8.07f, 0f);
+    [SerializeField]
+    private GameObject vs;
+
     [Header("Incorrect Input Feedback:")]
 
     [SerializeField, Range(1, 5)]
@@ -31,6 +50,20 @@ public class FeedbackManager : MonoBehaviour {
             Get = this;
         }
         else Destroy(this.gameObject);
+    }
+
+    public void vsAnimationIn() {
+        eclaireBas.transform.position = eclaireBasOut;
+        eclaireHaut.transform.position = eclaireHautOut;
+
+
+    }
+
+    public void vsAnimationOut() {
+        eclaireBas.transform.position = eclaireBasIn;
+        eclaireHaut.transform.position = eclaireHautIn;
+
+
     }
 
     public void correctInputFeedback(InputObject inputObj) {
@@ -100,5 +133,37 @@ public class FeedbackManager : MonoBehaviour {
             yield return null;
         }
         Destroy(obj);
+     }
+
+     private IEnumerator vsAnimationInStart() {
+        float timer = 0f;
+        while (timer <= animationTime) {
+            timer += Time.deltaTime;
+
+            eclaireBas.transform.position = new Vector3(Mathf.Lerp(eclaireBasOut.x, eclaireBasIn.x, timer / animationTime),
+                                                        Mathf.Lerp(eclaireBasOut.y, eclaireBasIn.y, timer / animationTime), transform.position.z);
+            eclaireHaut.transform.position = new Vector3(Mathf.Lerp(eclaireHautOut.x, eclaireHautIn.x, timer / animationTime),
+                                                        Mathf.Lerp(eclaireHautOut.y, eclaireHautIn.y, timer / animationTime), transform.position.z);
+
+            yield return null;
+        }
+        eclaireBas.transform.position = eclaireBasIn;
+        eclaireHaut.transform.position = eclaireHautIn;
+     }
+
+     private IEnumerator vsAnimationOutStart() {
+        float timer = 0f;
+        while (timer <= animationTime) {
+            timer += Time.deltaTime;
+
+            eclaireBas.transform.position = new Vector3(Mathf.Lerp(eclaireBasIn.x, eclaireBasOut.x, timer / animationTime),
+                                                        Mathf.Lerp(eclaireBasIn.y, eclaireBasOut.y, timer / animationTime), transform.position.z);
+            eclaireHaut.transform.position = new Vector3(Mathf.Lerp(eclaireHautIn.x, eclaireHautOut.x, timer / animationTime),
+                                                        Mathf.Lerp(eclaireHautIn.y, eclaireHautOut.y, timer / animationTime), transform.position.z);
+
+            yield return null;
+        }
+        eclaireBas.transform.position = eclaireBasOut;
+        eclaireHaut.transform.position = eclaireHautOut;
      }
 }

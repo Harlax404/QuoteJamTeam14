@@ -9,13 +9,12 @@ public class Bonbon : MonoBehaviour
     [SerializeField] SpriteRenderer renderer;
 
     [HideInInspector] public int score;
+    [HideInInspector] public BonbonType bonbonType;
 
-    public void Init(/*ArrayList inputs, int _playerId,*/ Sprite _sprite, int _score)
+    public void Init(Sprite _sprite, int _score, BonbonType type)
     {
-        //listInput = inputs;
-        //playerId = _playerId;
-
         renderer.sprite = _sprite;
         score = _score;
+        bonbonType = type;
     }
 }

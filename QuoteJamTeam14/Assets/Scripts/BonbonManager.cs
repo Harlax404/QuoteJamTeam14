@@ -5,9 +5,6 @@ using UnityEngine.Sprites;
 
 public class BonbonManager : MonoBehaviour
 {
-    [SerializeField, Min(1)] int minInput;
-    [SerializeField, Min(1)] int maxInput;
-
     [SerializeField] Bonbon bonbonPrefab;
     [SerializeField] InputObject inputPrefab;
 
@@ -53,9 +50,101 @@ public class BonbonManager : MonoBehaviour
     {
         Bonbon bb = Instantiate(bonbonPrefab, pos);
         ArrayList inputs = new ArrayList();
+        BonbonType bonbonType;
+        int nbInput = 2;
+        int score = 50;
+        int bonbonSpriteIndex = Random.Range(0, bonbonSprites.Count);
+        int emballageSpriteIndex = Random.Range(0, emballageSprites.Count);
 
-        //to do : Meilleur algo pour le nombre d'input a faire en fonction des scores ?
-        int nbInput = Random.Range(minInput, maxInput);
+        //Creation du bonbon
+        if (playerId == 1)
+        {
+            if (isEmballageP1)
+            {
+                bonbonType = (BonbonType)Random.Range(0, 3);
+                switch (bonbonType)
+                {
+                    case BonbonType.easy:
+                        nbInput = 2;
+                        score = ScoreManager.Get.lowScore;
+                        break;
+                    case BonbonType.medium:
+                        nbInput = 3;
+                        score = ScoreManager.Get.mediumScore;
+                        break;
+                    case BonbonType.hard:
+                        nbInput = 5;
+                        score = ScoreManager.Get.highScore;
+                        break;
+                }
+                bb.Init(emballageSprites[emballageSpriteIndex], score, bonbonType);
+            }
+            else
+            {
+                bonbonType = currentBBJ1.bonbonType;
+                switch (bonbonType)
+                {
+                    case BonbonType.easy:
+                        nbInput = 2;
+                        score = ScoreManager.Get.lowScore;
+                        break;
+                    case BonbonType.medium:
+                        nbInput = 3;
+                        score = ScoreManager.Get.mediumScore;
+                        break;
+                    case BonbonType.hard:
+                        nbInput = 5;
+                        score = ScoreManager.Get.highScore;
+                        break;
+                }
+                bb.Init(bonbonSprites[bonbonSpriteIndex], score, bonbonType);
+            }
+        }
+        else
+        {
+            if (isEmballageP2)
+            {
+                bonbonType = (BonbonType)Random.Range(0, 3);
+                switch (bonbonType)
+                {
+                    case BonbonType.easy:
+                        nbInput = 2;
+                        score = ScoreManager.Get.lowScore;
+                        break;
+                    case BonbonType.medium:
+                        nbInput = 3;
+                        score = ScoreManager.Get.mediumScore;
+                        break;
+                    case BonbonType.hard:
+                        nbInput = 5;
+                        score = ScoreManager.Get.highScore;
+                        break;
+                }
+                bb.Init(emballageSprites[emballageSpriteIndex], score, bonbonType);
+            }
+            else
+            {
+                bonbonType = currentBBJ2.bonbonType;
+                switch (bonbonType)
+                {
+                    case BonbonType.easy:
+                        nbInput = 2;
+                        score = ScoreManager.Get.lowScore;
+                        break;
+                    case BonbonType.medium:
+                        nbInput = 3;
+                        score = ScoreManager.Get.mediumScore;
+                        break;
+                    case BonbonType.hard:
+                        nbInput = 5;
+                        score = ScoreManager.Get.highScore;
+                        break;
+                }
+                bb.Init(bonbonSprites[bonbonSpriteIndex], score, bonbonType);
+            }
+        }
+
+        // Creation des input associes
         for (int i = 0; i < nbInput; ++i)
         {
             int rand = Random.Range(0, 4);
@@ -72,30 +161,6 @@ public class BonbonManager : MonoBehaviour
             else Destroy(obj.gameObject);
         }
         
-        int bonbonSpriteIndex = Random.Range(0, bonbonSprites.Count);
-        int emballageSpriteIndex = Random.Range(0, emballageSprites.Count);
-        if (playerId == 1)
-        {
-            if (isEmballageP1)
-            {
-                bb.Init(emballageSprites[emballageSpriteIndex], 50);
-            }
-            else
-            {
-                bb.Init(bonbonSprites[bonbonSpriteIndex], 50);
-            }
-        }
-        else
-        {
-            if (isEmballageP2)
-            {
-                bb.Init(emballageSprites[emballageSpriteIndex], 50);
-            }
-            else
-            {
-                bb.Init(bonbonSprites[bonbonSpriteIndex], 50);
-            }
-        }
         PlayerInput.Get.SetListInput(playerId == 1, inputs);
         return bb;
     }
@@ -198,4 +263,11 @@ public class BonbonManager : MonoBehaviour
         isEmballageP1 = true;
         isEmballageP2 = true;
     }
+}
+
+public enum BonbonType
+{
+    easy = 0,
+    medium = 1,
+    hard = 2
 }

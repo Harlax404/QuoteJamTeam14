@@ -15,9 +15,9 @@ public class ScoreManager : MonoBehaviour
     int multiplierP1;
     int multiplierP2;
 
-    [SerializeField] int lowScore = 50;
-    [SerializeField] int mediumScore = 75;
-    [SerializeField] int highScore = 100;
+    public int lowScore = 50;
+    public int mediumScore = 75;
+    public int highScore = 100;
 
     void Start() {
         ResetScore();

@@ -285,6 +285,13 @@ public class BonbonManager : MonoBehaviour
                 break;
         }
     }
+
+    public InputObject GetCurrentInputObject(bool isP1) {
+        if(isP1)
+            return inputPlayer1[0];
+        else
+            return inputPlayer2[0];
+    }
 }
 
 public enum BonbonType

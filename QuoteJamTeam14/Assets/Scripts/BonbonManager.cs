@@ -45,8 +45,7 @@ public class BonbonManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Spawns()
     {
         currentBBJ1 = Spawnbonbon(posPlayer1, 1, posPlayerInput1);
         currentBBJ2 = Spawnbonbon(posPlayer2, 2, posPlayerInput2);
@@ -208,8 +207,11 @@ public class BonbonManager : MonoBehaviour
                 CheckPiment(bb, 1);
             }
             if (forReset) ResetEmballageStatus();
-            else SwapEmballageStatus(1);
-            currentBBJ1 = Spawnbonbon(posPlayer1, 1, posPlayerInput1);
+            else
+            {
+                SwapEmballageStatus(1);
+                currentBBJ1 = Spawnbonbon(posPlayer1, 1, posPlayerInput1);
+            }
         }
         else if (bb == currentBBJ2)
         {
@@ -221,8 +223,11 @@ public class BonbonManager : MonoBehaviour
                 CheckPiment(bb, 2);
             }
             if (forReset) ResetEmballageStatus();
-            else SwapEmballageStatus(2);
-            currentBBJ2 = Spawnbonbon(posPlayer2, 2, posPlayerInput2);
+            else
+            {
+                SwapEmballageStatus(2);
+                currentBBJ2 = Spawnbonbon(posPlayer2, 2, posPlayerInput2);
+            } 
         }
         else
         {

@@ -6,11 +6,8 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    public GameObject spriteP1;
-    public GameObject spriteP2;
-
-    public GameObject smashButtonP1;
-    public GameObject smashButtonP2;
+    public GameObject piment1;
+    public GameObject piment2;
 
     public static CanvasManager Get;
     private void Awake()
@@ -20,5 +17,11 @@ public class CanvasManager : MonoBehaviour
             Get = this;
         }
         else Destroy(this.gameObject);
+    }
+
+    private void Start()
+    {
+        piment1.SetActive(false);
+        piment2.SetActive(false);
     }
 }

@@ -62,7 +62,7 @@ public class PlayerInput : MonoBehaviour {
                 p1Fail();
         }
 
-        if (needSmashP1 && Input.GetKeyDown(KeyCode.P))
+        if (needSmashP1 && Input.GetKeyDown(KeyCode.V))
         {
             ++currentSmashP1;
             if (currentSmashP1 >= nbSmash)
@@ -70,8 +70,7 @@ public class PlayerInput : MonoBehaviour {
                 CanvasManager canvas = CanvasManager.Get;
                 currentSmashP1 = 0;
                 SetBlockMultiplier(true, false);
-                canvas.smashButtonP1.SetActive(false);
-                canvas.spriteP1.SetActive(false);
+                canvas.piment1.SetActive(false);
             }
         }
 
@@ -89,7 +88,7 @@ public class PlayerInput : MonoBehaviour {
             p2Fail();
         }
 
-        if (needsmashP2 && Input.GetKeyDown(KeyCode.V))
+        if (needsmashP2 && Input.GetKeyDown(KeyCode.P))
         {
             ++currentSmashP2;
             if (currentSmashP2 >= nbSmash)
@@ -97,8 +96,7 @@ public class PlayerInput : MonoBehaviour {
                 CanvasManager canvas = CanvasManager.Get;
                 currentSmashP2 = 0;
                 SetBlockMultiplier(false, false);
-                canvas.smashButtonP2.SetActive(false);
-                canvas.spriteP2.SetActive(false);
+                canvas.piment2.SetActive(false);
             }
         }
 

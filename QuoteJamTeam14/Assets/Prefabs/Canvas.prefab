@@ -2033,10 +2033,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ab1c6ab37995444b477f060ed75f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteP1: {fileID: 3058537773941375857}
-  spriteP2: {fileID: 3058537775594918130}
-  smashButtonP1: {fileID: 3058537773803999270}
-  smashButtonP2: {fileID: 3058537775402891587}
+  piment1: {fileID: 6162898900165023175}
+  piment2: {fileID: 6545823884454000947}
 --- !u!1 &3058537775842463073
 GameObject:
   m_ObjectHideFlags: 0

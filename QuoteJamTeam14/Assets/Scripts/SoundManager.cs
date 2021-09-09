@@ -12,7 +12,9 @@ public class SoundManager : MonoBehaviour {
         {
             Get = this;
         }
-        else Destroy(this.gameObject);
+        else Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
 
         foreach(Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();

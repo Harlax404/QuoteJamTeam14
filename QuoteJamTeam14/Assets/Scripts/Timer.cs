@@ -22,6 +22,8 @@ public class Timer : MonoBehaviour {
 
     private bool gameStarted, gameCountdown, p1Ready, p2Ready;
 
+    [SerializeField] GameObject keyBoardLayout;
+
     public static Timer Get;
     private void Awake()
     {
@@ -124,6 +126,8 @@ public class Timer : MonoBehaviour {
         gameCountdown = true;
         startUI.SetActive(false);
         curTime = countdownValue;
+        SoundManager.Get.Play(Sound.soundNames.MatchConfirm);
+        keyBoardLayout.SetActive(false);
     }
 
     public void RestartGame() 
@@ -132,9 +136,12 @@ public class Timer : MonoBehaviour {
         ScoreManager.Get.ResetScore();
         startUI.SetActive(true);
         matchStatusChange(false, true);
+        SoundManager.Get.Play(Sound.soundNames.MenuClick);
+        keyBoardLayout.SetActive(true);
     }
 
     public void LeaveGame() {
          SceneManager.LoadScene("Menu");
+        SoundManager.Get.Play(Sound.soundNames.MenuClick);
     }
 }

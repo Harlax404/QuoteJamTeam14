@@ -23,6 +23,8 @@ public class ScoreManager : MonoBehaviour
     public int highScore = 100;
     public int goldMultiplier = 3;
 
+    [SerializeField] int milestoneForSound = 10;
+
     void Start() {
         ResetScore();
     }
@@ -84,6 +86,11 @@ public class ScoreManager : MonoBehaviour
             {
                 multiplierP1++;
                 multiplierTextP1.text = "x" + multiplierP1;
+
+                if (multiplierP1 % milestoneForSound == 0)
+                {
+                    SoundManager.Get.Play(Sound.soundNames.MultiplierMileStone);
+                }
             }
         } 
         else
@@ -92,6 +99,11 @@ public class ScoreManager : MonoBehaviour
             {
                 multiplierP2++;
                 multiplierTextP2.text = "x" + multiplierP2;
+
+                if (multiplierP2 % milestoneForSound == 0)
+                {
+                    SoundManager.Get.Play(Sound.soundNames.MultiplierMileStone);
+                }
             }
         }
     }

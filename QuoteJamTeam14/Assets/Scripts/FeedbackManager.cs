@@ -52,18 +52,26 @@ public class FeedbackManager : MonoBehaviour {
         else Destroy(this.gameObject);
     }
 
+    private void Start() {
+        eclaireBas.transform.position = eclaireBasOut;
+        eclaireHaut.transform.position = eclaireHautOut;
+        vs.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0);
+    }
+
     public void vsAnimationIn() {
         eclaireBas.transform.position = eclaireBasOut;
         eclaireHaut.transform.position = eclaireHautOut;
+        vs.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0);
 
-
+        StartCoroutine(vsAnimationInStart());
     }
 
     public void vsAnimationOut() {
         eclaireBas.transform.position = eclaireBasIn;
         eclaireHaut.transform.position = eclaireHautIn;
+        vs.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 1);
 
-
+        StartCoroutine(vsAnimationOutStart());
     }
 
     public void correctInputFeedback(InputObject inputObj) {
@@ -145,10 +153,13 @@ public class FeedbackManager : MonoBehaviour {
             eclaireHaut.transform.position = new Vector3(Mathf.Lerp(eclaireHautOut.x, eclaireHautIn.x, timer / animationTime),
                                                         Mathf.Lerp(eclaireHautOut.y, eclaireHautIn.y, timer / animationTime), transform.position.z);
 
+            vs.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, Mathf.Lerp(0f, 1f, timer/animationTime));
+
             yield return null;
         }
         eclaireBas.transform.position = eclaireBasIn;
         eclaireHaut.transform.position = eclaireHautIn;
+        vs.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 1);
      }
 
      private IEnumerator vsAnimationOutStart() {
@@ -161,9 +172,12 @@ public class FeedbackManager : MonoBehaviour {
             eclaireHaut.transform.position = new Vector3(Mathf.Lerp(eclaireHautIn.x, eclaireHautOut.x, timer / animationTime),
                                                         Mathf.Lerp(eclaireHautIn.y, eclaireHautOut.y, timer / animationTime), transform.position.z);
 
+            vs.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, Mathf.Lerp(1f, 0f, timer/animationTime));
+
             yield return null;
         }
         eclaireBas.transform.position = eclaireBasOut;
         eclaireHaut.transform.position = eclaireHautOut;
+        vs.GetComponent<SpriteRenderer>().material.color = new Color(1, 1, 1, 0);
      }
 }

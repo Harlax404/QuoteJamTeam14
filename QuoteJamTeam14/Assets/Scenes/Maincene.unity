@@ -2879,7 +2879,7 @@ PrefabInstance:
       objectReference: {fileID: 2090766984}
     - target: {fileID: 6342632918284732981, guid: c1e3cfdd725caf347bba738713a500b3, type: 3}
       propertyPath: animationTime
-      value: 0.5
+      value: 0.175
       objectReference: {fileID: 0}
     - target: {fileID: 6342632918284732981, guid: c1e3cfdd725caf347bba738713a500b3, type: 3}
       propertyPath: eclaireBasIn.x

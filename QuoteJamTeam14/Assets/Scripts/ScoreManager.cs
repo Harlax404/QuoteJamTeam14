@@ -15,9 +15,13 @@ public class ScoreManager : MonoBehaviour
     int multiplierP1;
     int multiplierP2;
 
+    bool blockMultiplierP1 = false;
+    bool blockMultiplierP2 = false;
+
     public int lowScore = 50;
     public int mediumScore = 75;
     public int highScore = 100;
+    public int goldMultiplier = 3;
 
     void Start() {
         ResetScore();
@@ -74,12 +78,33 @@ public class ScoreManager : MonoBehaviour
     }
     
     public void IncrementMultiplier(bool isP1) {
-        if(isP1) {
-            multiplierP1++;
-            multiplierTextP1.text = "x" + multiplierP1;
-        } else {
-            multiplierP2++;
-            multiplierTextP2.text = "x" + multiplierP2;
+        if(isP1)
+        {
+            if (!blockMultiplierP1)
+            {
+                multiplierP1++;
+                multiplierTextP1.text = "x" + multiplierP1;
+            }
+        } 
+        else
+        {
+            if (!blockMultiplierP2)
+            {
+                multiplierP2++;
+                multiplierTextP2.text = "x" + multiplierP2;
+            }
+        }
+    }
+
+    public void SetBlockMultiplier(bool isP1, bool state)
+    {
+        if (isP1)
+        {
+            blockMultiplierP1 = state;
+        }
+        else
+        {
+            blockMultiplierP2 = state;
         }
     }
 }

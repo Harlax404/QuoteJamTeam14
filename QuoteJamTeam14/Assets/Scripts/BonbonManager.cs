@@ -26,7 +26,9 @@ public class BonbonManager : MonoBehaviour
     private List<InputObject> inputPlayer2 = new List<InputObject>();
 
     [SerializeField] List<Sprite> inputSprites = new List<Sprite>();
+    [SerializeField] BonbonScriptableObject pimentSprites;
     [SerializeField] List<BonbonScriptableObject> bonbonSprites = new List<BonbonScriptableObject>();
+    [SerializeField] List<BonbonScriptableObject> bonbonSpritesGold = new List<BonbonScriptableObject>();
     [SerializeField] List<BonbonScriptableObject> emballageSprites = new List<BonbonScriptableObject>();
 
     [SerializeField] int nbEasyInput = 3;
@@ -101,7 +103,19 @@ public class BonbonManager : MonoBehaviour
                         score = ScoreManager.Get.highScore;
                         break;
                 }
-                bb.Init(bonbonSprites[bonbonSpriteIndex], score, bonbonType);
+                float rand = Random.Range(0, 100);
+                if (rand > 90)
+                {
+                    bb.Init(bonbonSpritesGold[bonbonSpriteIndex], score * ScoreManager.Get.goldMultiplier, bonbonType);
+                }
+                else if (rand > 80)
+                {
+                    bb.Init(pimentSprites, score, bonbonType, true);
+                }
+                else
+                {
+                    bb.Init(bonbonSprites[bonbonSpriteIndex], score, bonbonType);
+                }
             }
         }
         else
@@ -144,7 +158,19 @@ public class BonbonManager : MonoBehaviour
                         score = ScoreManager.Get.highScore;
                         break;
                 }
-                bb.Init(bonbonSprites[bonbonSpriteIndex], score, bonbonType);
+                float rand = Random.Range(0, 100);
+                if (rand > 90)
+                {
+                    bb.Init(bonbonSpritesGold[bonbonSpriteIndex], score * ScoreManager.Get.goldMultiplier, bonbonType);
+                }
+                else if (rand > 80)
+                {
+                    bb.Init(pimentSprites, score, bonbonType, true);
+                }
+                else
+                {
+                    bb.Init(bonbonSprites[bonbonSpriteIndex], score, bonbonType);
+                }
             }
         }
 
@@ -178,6 +204,7 @@ public class BonbonManager : MonoBehaviour
             if (!forReset && !isEmballageP1)
             {
                 ScoreManager.Get.AddScrore(currentBBJ1.score, 1);
+                CheckPiment(bb, 1);
             }
             if (forReset) ResetEmballageStatus();
             else SwapEmballageStatus(1);
@@ -190,6 +217,7 @@ public class BonbonManager : MonoBehaviour
             if (!forReset && !isEmballageP2)
             {
                 ScoreManager.Get.AddScrore(currentBBJ2.score, 2);
+                CheckPiment(bb, 2);
             }
             if (forReset) ResetEmballageStatus();
             else SwapEmballageStatus(2);
@@ -198,6 +226,15 @@ public class BonbonManager : MonoBehaviour
         else
         {
             Destroy(bb.gameObject);
+        }
+    }
+
+    private void CheckPiment(Bonbon bb, int playerId)
+    {
+        if (bb.isPiment)
+        {
+            ScoreManager.Get.SetBlockMultiplier(playerId == 1, true);
+            //TO DO : SMASH Button
         }
     }
 

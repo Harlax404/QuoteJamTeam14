@@ -9,12 +9,14 @@ public class Bonbon : MonoBehaviour
     [HideInInspector] public int score;
     [HideInInspector] public BonbonType bonbonType;
     [HideInInspector] public BonbonScriptableObject sprites;
+    [HideInInspector] public bool isPiment;
 
-    public void Init(BonbonScriptableObject _sprites, int _score, BonbonType type)
+    public void Init(BonbonScriptableObject _sprites, int _score, BonbonType type, bool _isPiment = false)
     {
         sprites = _sprites;
         score = _score;
         bonbonType = type;
+        isPiment = _isPiment;
 
         renderer.sprite = sprites.start;
     }

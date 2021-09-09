@@ -77,15 +77,19 @@ public class PlayerInput : MonoBehaviour {
 
     // correct input
     private void p1InputPressed() {
-        BonbonManager.Get.DestroyInput(1);
         SoundManager.Get.Play(Sound.soundNames.CorrectSound);
+
+        FeedbackManager.Get.correctInputFeedback(BonbonManager.Get.GetCurrentInputObject(true));
+        BonbonManager.Get.DestroyInput(1);
 
         if(atLeast1BonbonCorrectP1) 
             ScoreManager.Get.IncrementMultiplier(true);
     }
     private void p2InputPressed() {
-        BonbonManager.Get.DestroyInput(2);
         SoundManager.Get.Play(Sound.soundNames.CorrectSound);
+
+        FeedbackManager.Get.correctInputFeedback(BonbonManager.Get.GetCurrentInputObject(false));
+        BonbonManager.Get.DestroyInput(2);
 
         if(atLeast1BonbonCorrectP2) 
             ScoreManager.Get.IncrementMultiplier(false);
@@ -98,6 +102,8 @@ public class PlayerInput : MonoBehaviour {
 
         ScoreManager.Get.ResetMultiplier(true);
 
+        FeedbackManager.Get.IncorrectInputFeedback(BonbonManager.Get.GetCurrentInputObject(true));
+
         atLeast1BonbonCorrectP1 = false;
         startInterruptedP1 = true;
     }
@@ -106,6 +112,8 @@ public class PlayerInput : MonoBehaviour {
         SoundManager.Get.Play(Sound.soundNames.IncorrectSound);
 
         ScoreManager.Get.ResetMultiplier(false);
+
+        FeedbackManager.Get.IncorrectInputFeedback(BonbonManager.Get.GetCurrentInputObject(false));
 
         atLeast1BonbonCorrectP2 = false;
         startInterruptedP2 = true;

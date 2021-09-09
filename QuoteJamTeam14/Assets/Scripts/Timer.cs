@@ -54,6 +54,7 @@ public class Timer : MonoBehaviour {
                 matchStatusChange(false, false);
                 gameStarted = true;
                 gameCountdown = false;
+                BonbonManager.Get.Spawns();
             }
         } else if(!p1Ready || !p2Ready) {
             if(Input.anyKeyDown) {

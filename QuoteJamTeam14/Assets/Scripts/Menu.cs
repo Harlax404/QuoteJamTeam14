@@ -7,9 +7,6 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     [SerializeField]
-    private string MainScene;
-
-    [SerializeField]
     private GameObject mainPanel;
 
     [SerializeField]
@@ -33,7 +30,7 @@ public class Menu : MonoBehaviour
 
     public void LaunchGame()
     {
-        SceneManager.LoadScene(MainScene);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()

@@ -26,8 +26,12 @@ public class BonbonManager : MonoBehaviour
     private List<InputObject> inputPlayer2 = new List<InputObject>();
 
     [SerializeField] List<Sprite> inputSprites = new List<Sprite>();
-    [SerializeField] List<Sprite> bonbonSprites = new List<Sprite>();
-    [SerializeField] List<Sprite> emballageSprites = new List<Sprite>();
+    [SerializeField] List<BonbonScriptableObject> bonbonSprites = new List<BonbonScriptableObject>();
+    [SerializeField] List<BonbonScriptableObject> emballageSprites = new List<BonbonScriptableObject>();
+
+    [SerializeField] int nbEasyInput = 3;
+    [SerializeField] int nbMediumInput = 4;
+    [SerializeField] int nbHardInput = 6;
 
     public static BonbonManager Get;
     private void Awake()
@@ -65,15 +69,15 @@ public class BonbonManager : MonoBehaviour
                 switch (bonbonType)
                 {
                     case BonbonType.easy:
-                        nbInput = 2;
+                        nbInput = nbEasyInput;
                         score = ScoreManager.Get.lowScore;
                         break;
                     case BonbonType.medium:
-                        nbInput = 3;
+                        nbInput = nbMediumInput;
                         score = ScoreManager.Get.mediumScore;
                         break;
                     case BonbonType.hard:
-                        nbInput = 5;
+                        nbInput = nbHardInput;
                         score = ScoreManager.Get.highScore;
                         break;
                 }
@@ -85,15 +89,15 @@ public class BonbonManager : MonoBehaviour
                 switch (bonbonType)
                 {
                     case BonbonType.easy:
-                        nbInput = 2;
+                        nbInput = nbEasyInput;
                         score = ScoreManager.Get.lowScore;
                         break;
                     case BonbonType.medium:
-                        nbInput = 3;
+                        nbInput = nbMediumInput;
                         score = ScoreManager.Get.mediumScore;
                         break;
                     case BonbonType.hard:
-                        nbInput = 5;
+                        nbInput = nbHardInput;
                         score = ScoreManager.Get.highScore;
                         break;
                 }
@@ -108,15 +112,15 @@ public class BonbonManager : MonoBehaviour
                 switch (bonbonType)
                 {
                     case BonbonType.easy:
-                        nbInput = 2;
+                        nbInput = nbEasyInput;
                         score = ScoreManager.Get.lowScore;
                         break;
                     case BonbonType.medium:
-                        nbInput = 3;
+                        nbInput = nbMediumInput;
                         score = ScoreManager.Get.mediumScore;
                         break;
                     case BonbonType.hard:
-                        nbInput = 5;
+                        nbInput = nbHardInput;
                         score = ScoreManager.Get.highScore;
                         break;
                 }
@@ -128,15 +132,15 @@ public class BonbonManager : MonoBehaviour
                 switch (bonbonType)
                 {
                     case BonbonType.easy:
-                        nbInput = 2;
+                        nbInput = nbEasyInput;
                         score = ScoreManager.Get.lowScore;
                         break;
                     case BonbonType.medium:
-                        nbInput = 3;
+                        nbInput = nbMediumInput;
                         score = ScoreManager.Get.mediumScore;
                         break;
                     case BonbonType.hard:
-                        nbInput = 5;
+                        nbInput = nbHardInput;
                         score = ScoreManager.Get.highScore;
                         break;
                 }
@@ -207,10 +211,10 @@ public class BonbonManager : MonoBehaviour
             }
             Destroy(inputPlayer1[0].gameObject);
             inputPlayer1.RemoveAt(0);
+
             if (inputPlayer1.Count == 0)
-            {
                 DestroyBonbon(currentBBJ1);
-            }
+            else CheckSwapSprite(currentBBJ1, inputPlayer1.Count);
         }
         else if (playerId == 2)
         {
@@ -220,10 +224,10 @@ public class BonbonManager : MonoBehaviour
             }
             Destroy(inputPlayer2[0].gameObject);
             inputPlayer2.RemoveAt(0);
+
             if (inputPlayer2.Count == 0)
-            {
                 DestroyBonbon(currentBBJ2);
-            }
+            else CheckSwapSprite(currentBBJ2, inputPlayer2.Count);
         }
         else Debug.LogError("Wrong playerId");
     }
@@ -262,6 +266,24 @@ public class BonbonManager : MonoBehaviour
     {
         isEmballageP1 = true;
         isEmballageP2 = true;
+    }
+
+    void CheckSwapSprite(Bonbon bonbon, int nbInputRestants)
+    {
+        switch (bonbon.bonbonType)
+        {
+            case BonbonType.easy:
+                bonbon.NextSprite();
+                break;
+            case BonbonType.medium:
+                if (nbInputRestants == 3 || nbInputRestants == 1)
+                    bonbon.NextSprite();
+                break;
+            case BonbonType.hard:
+                if (nbInputRestants == 4 || nbInputRestants == 2)
+                    bonbon.NextSprite();
+                break;
+        }
     }
 }
 

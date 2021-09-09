@@ -31,6 +31,7 @@ public class Menu : MonoBehaviour
     public void LaunchGame()
     {
         SceneManager.LoadScene(1);
+        SoundManager.Get.Play(Sound.soundNames.MenuClick);
     }
 
     public void QuitGame()
@@ -45,6 +46,8 @@ public class Menu : MonoBehaviour
 
         mainPanel.SetActive(mainpanelActiveSelf);
         creditPanel.SetActive(creditpanelActiveSelf);
+
+        SoundManager.Get.Play(Sound.soundNames.MenuClick);
     }
 
 }

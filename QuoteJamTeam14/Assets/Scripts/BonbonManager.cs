@@ -200,6 +200,12 @@ public class BonbonManager : MonoBehaviour
         if (bb == currentBBJ1)
         {
             // TO DO : add animation
+
+            //Sounds
+            if (isEmballageP1)
+                SoundManager.Get.Play(Sound.soundNames.Emballage);
+            else SoundManager.Get.Play(Sound.soundNames.EatBonbon);
+
             Destroy(bb.gameObject);
             if (!forReset && !isEmballageP1)
             {
@@ -216,6 +222,12 @@ public class BonbonManager : MonoBehaviour
         else if (bb == currentBBJ2)
         {
             // TO DO : add animation
+
+            //Sounds
+            if (isEmballageP2)
+                SoundManager.Get.Play(Sound.soundNames.Emballage);
+            else SoundManager.Get.Play(Sound.soundNames.EatBonbon);
+
             Destroy(bb.gameObject);
             if (!forReset && !isEmballageP2)
             {

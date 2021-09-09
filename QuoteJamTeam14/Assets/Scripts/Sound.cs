@@ -4,7 +4,18 @@ using UnityEngine;
 [System.Serializable]
 public class Sound {
 
-    public enum soundNames {None, MusicSound, CorrectSound, IncorrectSound}
+    public enum soundNames
+    {
+        None,
+        MusicSound,
+        CorrectSound,
+        IncorrectSound,
+        MatchConfirm,
+        Emballage,
+        EatBonbon,
+        MultiplierMileStone,
+        MenuClick
+    }
 
     public AudioClip clip;
 

@@ -171,6 +171,8 @@ public class PlayerInput : MonoBehaviour {
             keyboardLayoutText.text = "The keyboard layout is currently set to \'QWERTY\'";
         else 
             keyboardLayoutText.text = "La disposition du clavier est actuellement définie sur \'AZERTY\'";
+
+        SoundManager.Get.Play(Sound.soundNames.MenuClick);
     }
 
     public void SetListInput(bool isP1, ArrayList list) {

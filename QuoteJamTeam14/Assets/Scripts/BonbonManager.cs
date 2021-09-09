@@ -166,6 +166,7 @@ public class BonbonManager : MonoBehaviour
                 else if (rand > 80)
                 {
                     bb.Init(pimentSprites, score, bonbonType, true);
+                    Debug.LogWarning("Piment");
                 }
                 else
                 {
@@ -233,8 +234,19 @@ public class BonbonManager : MonoBehaviour
     {
         if (bb.isPiment)
         {
+            CanvasManager canvas = CanvasManager.Get;
             ScoreManager.Get.SetBlockMultiplier(playerId == 1, true);
-            //TO DO : SMASH Button
+            PlayerInput.Get.SetBlockMultiplier(playerId == 1, true);
+            if (playerId == 1)
+            {
+                canvas.spriteP1.SetActive(true);
+                canvas.smashButtonP1.SetActive(true);
+            }
+            else
+            {
+                canvas.spriteP2.SetActive(true);
+                canvas.smashButtonP2.SetActive(true);
+            }
         }
     }
 

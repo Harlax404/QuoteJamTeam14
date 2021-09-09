@@ -15,6 +15,10 @@ public class PlayerInput : MonoBehaviour {
     private bool atLeast1BonbonCorrectP1, startInterruptedP1; // pour commencer a utiliser le multiplicateur
     private bool atLeast1BonbonCorrectP2, startInterruptedP2;
 
+    private bool needSmashP1, needsmashP2 = false;
+    [SerializeField] int nbSmash = 20;
+    private int currentSmashP1, currentSmashP2 = 0;
+
     public static PlayerInput Get;
     private void Awake()
     {
@@ -58,6 +62,19 @@ public class PlayerInput : MonoBehaviour {
                 p1Fail();
         }
 
+        if (needSmashP1 && Input.GetKeyDown(KeyCode.P))
+        {
+            ++currentSmashP1;
+            if (currentSmashP1 >= nbSmash)
+            {
+                CanvasManager canvas = CanvasManager.Get;
+                currentSmashP1 = 0;
+                SetBlockMultiplier(true, false);
+                canvas.smashButtonP1.SetActive(false);
+                canvas.spriteP1.SetActive(false);
+            }
+        }
+
         yield return null;
     }
 
@@ -70,6 +87,19 @@ public class PlayerInput : MonoBehaviour {
             p2InputPressed();
         } else if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)) {
             p2Fail();
+        }
+
+        if (needsmashP2 && Input.GetKeyDown(KeyCode.V))
+        {
+            ++currentSmashP2;
+            if (currentSmashP2 >= nbSmash)
+            {
+                CanvasManager canvas = CanvasManager.Get;
+                currentSmashP2 = 0;
+                SetBlockMultiplier(false, false);
+                canvas.smashButtonP2.SetActive(false);
+                canvas.spriteP2.SetActive(false);
+            }
         }
 
         yield return null;
@@ -148,5 +178,12 @@ public class PlayerInput : MonoBehaviour {
             inputListP1 = list;
         else
             inputListP2 = list;
+    }
+
+    public void SetBlockMultiplier(bool isP1, bool state)
+    {
+        if (isP1)
+            needSmashP1 = state;
+        else needsmashP2 = state;
     }
 }

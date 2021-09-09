@@ -12,6 +12,9 @@ public class PlayerInput : MonoBehaviour {
 
     private InputsNormalized inputsNormalized;
 
+    private bool atLeast1BonbonCorrectP1, startInterruptedP1; // pour commencer a utiliser le multiplicateur
+    private bool atLeast1BonbonCorrectP2, startInterruptedP2;
+
     public static PlayerInput Get;
     private void Awake()
     {
@@ -31,6 +34,9 @@ public class PlayerInput : MonoBehaviour {
             keyboardLayoutText.text = "The keyboard layout is currently set to \'QWERTY\'";
         else 
             keyboardLayoutText.text = "La disposition du clavier est actuellement définie sur \'AZERTY\'";
+
+        atLeast1BonbonCorrectP1 = startInterruptedP1 = false;
+        atLeast1BonbonCorrectP2 = startInterruptedP2 = false;
     }
 
     void Update() {
@@ -43,6 +49,8 @@ public class PlayerInput : MonoBehaviour {
     private IEnumerator InputCheckThreadPlayer1() {
 
         if(inputListP1.Count != 0 && Input.GetKeyDown(inputsNormalized.realInput(true, (int)inputListP1[0]))) {
+            if(inputListP1.Count == 1)
+                p1Success();
             inputListP1.RemoveAt(0);
             p1InputPressed();
         } else if((inputsNormalized.getIsQwerty() && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))) ||
@@ -56,9 +64,10 @@ public class PlayerInput : MonoBehaviour {
     private IEnumerator InputCheckThreadPlayer2() {
         
         if(inputListP2.Count != 0 && Input.GetKeyDown(inputsNormalized.realInput(false, (int)inputListP2[0]))) {
+            if(inputListP2.Count == 1)
+                p2Success();
             inputListP2.RemoveAt(0);
             p2InputPressed();
-
         } else if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)) {
             p2Fail();
         }
@@ -70,29 +79,51 @@ public class PlayerInput : MonoBehaviour {
     private void p1InputPressed() {
         BonbonManager.Get.DestroyInput(1);
         SoundManager.Get.Play(Sound.soundNames.CorrectSound);
+
+        if(atLeast1BonbonCorrectP1) 
+            ScoreManager.Get.IncrementMultiplier(true);
     }
     private void p2InputPressed() {
         BonbonManager.Get.DestroyInput(2);
         SoundManager.Get.Play(Sound.soundNames.CorrectSound);
+
+        if(atLeast1BonbonCorrectP2) 
+            ScoreManager.Get.IncrementMultiplier(false);
     }
 
     // mauvais input
     private void p1Fail()
     {     // animation fail  pour p1
         SoundManager.Get.Play(Sound.soundNames.IncorrectSound);
+
+        ScoreManager.Get.ResetMultiplier(true);
+
+        atLeast1BonbonCorrectP1 = false;
+        startInterruptedP1 = true;
     }
     private void p2Fail()
     {     // animation fail  pour p2
         SoundManager.Get.Play(Sound.soundNames.IncorrectSound);
+
+        ScoreManager.Get.ResetMultiplier(false);
+
+        atLeast1BonbonCorrectP2 = false;
+        startInterruptedP2 = true;
     }
 
-    // fin de tous input
-    //private void p1Success() {  // next bonbon pour p1
-    //    Debug.Log("P1 SUCCESS");
-    //}
-    //private void p2Success() {  // next bonbon  pour p2
-    //    Debug.Log("P2 SUCCESS"); 
-    //}
+    // fin de tous input d'un bonbon
+    private void p1Success() {        
+        if(!startInterruptedP1) 
+            atLeast1BonbonCorrectP1 = true;
+
+        startInterruptedP1 = false;
+    }
+    private void p2Success() {        
+        if(!startInterruptedP2) 
+            atLeast1BonbonCorrectP2 = true;
+
+        startInterruptedP2 = false;
+    }
 
 
 

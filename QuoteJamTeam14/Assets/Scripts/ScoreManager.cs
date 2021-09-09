@@ -6,12 +6,22 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] Text scoreP1;
     [SerializeField] Text scoreP2;
 
+    [SerializeField] Text multiplierTextP1;
+    [SerializeField] Text multiplierTextP2;
+
     int currentScoreP1;
     int currentScoreP2;
+
+    int multiplierP1;
+    int multiplierP2;
 
     [SerializeField] int lowScore = 50;
     [SerializeField] int mediumScore = 75;
     [SerializeField] int highScore = 100;
+
+    void Start() {
+        ResetScore();
+    }
 
     public static ScoreManager Get;
     private void Awake()
@@ -27,22 +37,49 @@ public class ScoreManager : MonoBehaviour
     {
         if (playerId == 1)
         {
-            currentScoreP1 += scoreToAdd;
+            currentScoreP1 += multiplierP1 * scoreToAdd;
             scoreP1.text = currentScoreP1.ToString();
         }
         else
         {
-            currentScoreP2 += scoreToAdd;
+            currentScoreP2 += multiplierP2 * scoreToAdd;
             scoreP2.text = currentScoreP2.ToString();
         }
     }
 
     public void ResetScore()
     {
+        ResetMultiplier();
+
         currentScoreP1 = 0;
         scoreP1.text = currentScoreP1.ToString();
 
         currentScoreP2 = 0;
         scoreP2.text = currentScoreP2.ToString();
+    }
+
+    private void ResetMultiplier() {
+        multiplierP1 = 1;
+        multiplierP2 = 1;
+    }
+
+    public void ResetMultiplier(bool isP1) {    // Overload used to be called from PlayerInput Script when a wrong input happens
+        if(isP1) {
+            multiplierP1 = 1;
+            multiplierTextP1.text = "x" + multiplierP1;
+        } else {
+            multiplierP2 = 1;
+            multiplierTextP2.text = "x" + multiplierP2;
+        }
+    }
+    
+    public void IncrementMultiplier(bool isP1) {
+        if(isP1) {
+            multiplierP1++;
+            multiplierTextP1.text = "x" + multiplierP1;
+        } else {
+            multiplierP2++;
+            multiplierTextP2.text = "x" + multiplierP2;
+        }
     }
 }

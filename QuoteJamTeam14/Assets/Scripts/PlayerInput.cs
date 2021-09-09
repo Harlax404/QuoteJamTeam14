@@ -98,6 +98,8 @@ public class PlayerInput : MonoBehaviour {
 
         ScoreManager.Get.ResetMultiplier(true);
 
+        //FeedbackManager.Get.IncorrectInputFeedback(BonbonManager.Get.);
+
         atLeast1BonbonCorrectP1 = false;
         startInterruptedP1 = true;
     }

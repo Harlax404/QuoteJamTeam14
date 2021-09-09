@@ -55,6 +55,7 @@ public class Timer : MonoBehaviour {
                 gameStarted = true;
                 gameCountdown = false;
                 BonbonManager.Get.Spawns();
+                FeedbackManager.Get.vsAnimationOut();
             }
         } else if(!p1Ready || !p2Ready) {
             if(Input.anyKeyDown) {
@@ -119,6 +120,7 @@ public class Timer : MonoBehaviour {
     }
 
     private void startGame() {
+        FeedbackManager.Get.vsAnimationIn();
         gameCountdown = true;
         startUI.SetActive(false);
         curTime = countdownValue;

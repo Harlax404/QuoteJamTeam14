@@ -76,26 +76,32 @@ public class Timer : MonoBehaviour {
 
                 comboTextP1.SetActive(false);
                 comboTextP2.SetActive(false);
-                /*if(ScoreManager.Get.GetScore(true) > ScoreManager.Get.GetScore(false)) { // P1 wins
+
+                if (ScoreManager.Get.GetScore(true) > ScoreManager.Get.GetScore(false))
+                { // P1 wins
                     winnerSpriteP1.SetActive(true);
                     winnerScoreTextP1.SetActive(true);
                     winnerScoreTextP1.GetComponent<Text>().text = ScoreManager.Get.GetScore(true) + "";
                     winnerSpriteP2.SetActive(false);
                     winnerScoreTextP2.SetActive(false);
-                } else if(ScoreManager.Get.GetScore(true) < ScoreManager.Get.GetScore(false)) { // P2 wins
+                }
+                else if (ScoreManager.Get.GetScore(true) < ScoreManager.Get.GetScore(false))
+                { // P2 wins
                     winnerSpriteP1.SetActive(false);
                     winnerScoreTextP1.SetActive(false);
                     winnerSpriteP2.SetActive(true);
                     winnerScoreTextP2.SetActive(true);
                     winnerScoreTextP2.GetComponent<Text>().text = ScoreManager.Get.GetScore(false) + "";
-                } else { // P1 and P2 win
+                }
+                else
+                { // P1 and P2 win
                     winnerSpriteP1.SetActive(true);
                     winnerScoreTextP1.SetActive(true);
                     winnerScoreTextP1.GetComponent<Text>().text = ScoreManager.Get.GetScore(true) + "";
                     winnerSpriteP2.SetActive(true);
                     winnerScoreTextP2.SetActive(true);
                     winnerScoreTextP2.GetComponent<Text>().text = ScoreManager.Get.GetScore(false) + "";
-                }*/
+                }
             }
         } else if(gameCountdown) {
             if(curTime > 0f)

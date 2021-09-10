@@ -14,7 +14,11 @@ public class Sound {
         Emballage,
         EatBonbon,
         MultiplierMileStone,
-        MenuClick
+        MenuClick,
+        PimentSpam,
+        PimentMange,
+        PimentDebarasse,
+        GoldBonbon
     }
 
     public AudioClip clip;

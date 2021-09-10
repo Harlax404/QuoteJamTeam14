@@ -106,6 +106,7 @@ public class BonbonManager : MonoBehaviour
                 if (rand > 90)
                 {
                     bb.Init(bonbonSpritesGold[bonbonSpriteIndex], score * ScoreManager.Get.goldMultiplier, bonbonType);
+                    SoundManager.Get.Play(Sound.soundNames.GoldBonbon);
                 }
                 else if (rand > 80)
                 {
@@ -161,6 +162,7 @@ public class BonbonManager : MonoBehaviour
                 if (rand > 90)
                 {
                     bb.Init(bonbonSpritesGold[bonbonSpriteIndex], score * ScoreManager.Get.goldMultiplier, bonbonType);
+                    SoundManager.Get.Play(Sound.soundNames.GoldBonbon);
                 }
                 else if (rand > 80)
                 {
@@ -251,6 +253,7 @@ public class BonbonManager : MonoBehaviour
     {
         if (bb.isPiment)
         {
+            SoundManager.Get.Play(Sound.soundNames.PimentMange);
             CanvasManager canvas = CanvasManager.Get;
             ScoreManager.Get.SetBlockMultiplier(playerId == 1, true);
             PlayerInput.Get.SetBlockMultiplier(playerId == 1, true);

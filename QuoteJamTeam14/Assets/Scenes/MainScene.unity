@@ -408,6 +408,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &306922545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 306922545, guid: 95da4c2b31159e744ab1e479f31644cb, type: 3}
+  m_PrefabInstance: {fileID: 1488091905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &362730108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +1058,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1445878619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1445878619, guid: 95da4c2b31159e744ab1e479f31644cb, type: 3}
+  m_PrefabInstance: {fileID: 1488091905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1488091905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1543,7 +1553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3b4f27f659d684aa123fbc14ead0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerValue: 10
+  timerValue: 60
   countdownValue: 3
   restart: 0
   timerText: {fileID: 1540350259}
@@ -1566,6 +1576,8 @@ MonoBehaviour:
   winnerScoreTextP1: {fileID: 1488091908}
   winnerSpriteP2: {fileID: 1488091907}
   winnerScoreTextP2: {fileID: 1488091906}
+  loserSpriteP1: {fileID: 1445878619}
+  loserSpriteP2: {fileID: 306922545}
 --- !u!4 &1952760746
 Transform:
   m_ObjectHideFlags: 0

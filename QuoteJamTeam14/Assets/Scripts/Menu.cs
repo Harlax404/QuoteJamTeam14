@@ -10,6 +10,9 @@ public class Menu : MonoBehaviour
     private GameObject mainPanel;
 
     [SerializeField]
+    private GameObject tutoPanel;
+
+    [SerializeField]
     private GameObject creditPanel;
 
     [SerializeField]
@@ -30,6 +33,7 @@ public class Menu : MonoBehaviour
         {
             creditPanel.SetActive(false);
         }
+        tutoPanel.SetActive(false);
     }
 
     public void LaunchGame()
@@ -55,6 +59,14 @@ public class Menu : MonoBehaviour
         backgroundTitle.SetActive(backgroundTitleActiveSelf);
 
         SoundManager.Get.Play(Sound.soundNames.MenuClick);
+    }
+
+    public void DisplayTutorial() {
+        tutoPanel.SetActive(true);
+    }
+
+    public void CloseTutorial() {
+        tutoPanel.SetActive(false);
     }
 
 }

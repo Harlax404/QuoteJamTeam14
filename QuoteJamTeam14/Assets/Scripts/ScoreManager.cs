@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -25,6 +26,14 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] int milestoneForSound = 10;
 
+    [Header("Bounce Score")]
+    [SerializeField, Min(1)] float maxScale = 1.3f;
+    [SerializeField] float bounceDuration = 0.3f;
+
+    [Header("Bounce Score Multiplier")]
+    [SerializeField, Min(1)] float maxScaleMultiplier = 1.1f;
+    [SerializeField] float bounceDurationMultiplier = 0.1f;
+
     void Start() {
         ResetScore();
     }
@@ -45,11 +54,13 @@ public class ScoreManager : MonoBehaviour
         {
             currentScoreP1 += multiplierP1 * scoreToAdd;
             scoreP1.text = currentScoreP1.ToString();
+            Bounce(true);
         }
         else
         {
             currentScoreP2 += multiplierP2 * scoreToAdd;
             scoreP2.text = currentScoreP2.ToString();
+            Bounce(false);
         }
     }
 
@@ -87,6 +98,8 @@ public class ScoreManager : MonoBehaviour
                 multiplierP1++;
                 multiplierTextP1.text = "x" + multiplierP1;
 
+                StartCoroutine(BounceRoutine(multiplierTextP1.gameObject, maxScaleMultiplier, bounceDurationMultiplier));
+
                 if (multiplierP1 % milestoneForSound == 0)
                 {
                     SoundManager.Get.Play(Sound.soundNames.MultiplierMileStone);
@@ -99,6 +112,8 @@ public class ScoreManager : MonoBehaviour
             {
                 multiplierP2++;
                 multiplierTextP2.text = "x" + multiplierP2;
+
+                StartCoroutine(BounceRoutine(multiplierTextP2.gameObject, maxScaleMultiplier, bounceDurationMultiplier));
 
                 if (multiplierP2 % milestoneForSound == 0)
                 {
@@ -118,5 +133,36 @@ public class ScoreManager : MonoBehaviour
         {
             blockMultiplierP2 = state;
         }
+    }
+
+    private void Bounce(bool isP1)
+    {
+        if (isP1)
+            StartCoroutine(BounceRoutine(scoreP1.gameObject, maxScale, bounceDuration));
+        else StartCoroutine(BounceRoutine(scoreP2.gameObject, maxScale, bounceDuration));
+    }
+
+    IEnumerator BounceRoutine(GameObject obj, float scale, float duration)
+    {
+        float timer = 0;
+        while (timer < bounceDuration)
+        {
+            timer += Time.deltaTime;
+            obj.transform.localScale = Mathf.Lerp(1, maxScale, timer / bounceDuration) * Vector3.one;
+            yield return null;
+        }
+        timer = 0f;
+        while (timer < bounceDuration)
+        {
+            timer += Time.deltaTime;
+            obj.transform.localScale = Mathf.Lerp(maxScale, 1, timer / bounceDuration) * Vector3.one;
+            yield return null;
+        }
+        obj.transform.localScale = Vector3.one;
+    }
+
+    public int GetScore(bool isP1)
+    {
+        return isP1 ? currentScoreP1 : currentScoreP2;
     }
 }

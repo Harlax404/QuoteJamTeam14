@@ -70,6 +70,7 @@ public class PlayerInput : MonoBehaviour {
                 CanvasManager canvas = CanvasManager.Get;
                 currentSmashP1 = 0;
                 SetBlockMultiplier(true, false);
+                ScoreManager.Get.SetBlockMultiplier(true, false);
                 canvas.piment1.SetActive(false);
             }
         }
@@ -96,6 +97,7 @@ public class PlayerInput : MonoBehaviour {
                 CanvasManager canvas = CanvasManager.Get;
                 currentSmashP2 = 0;
                 SetBlockMultiplier(false, false);
+                ScoreManager.Get.SetBlockMultiplier(false, false);
                 canvas.piment2.SetActive(false);
             }
         }

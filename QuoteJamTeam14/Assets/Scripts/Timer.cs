@@ -25,7 +25,7 @@ public class Timer : MonoBehaviour {
 
     [SerializeField] GameObject keyBoardLayout;
 
-    [SerializeField] GameObject winnerSpriteP1, winnerScoreTextP1, winnerSpriteP2, winnerScoreTextP2;
+    [SerializeField] GameObject winnerSpriteP1, winnerScoreTextP1, winnerSpriteP2, winnerScoreTextP2, loserSpriteP1, loserSpriteP2;
 
     public static Timer Get;
     private void Awake()
@@ -42,6 +42,8 @@ public class Timer : MonoBehaviour {
         winnerScoreTextP1.SetActive(false);
         winnerSpriteP2.SetActive(false);
         winnerScoreTextP2.SetActive(false);
+        loserSpriteP1.SetActive(false);
+        loserSpriteP2.SetActive(false);
 
         scoreP1Back.SetActive(false);
         scoreP2Back.SetActive(false);
@@ -84,6 +86,8 @@ public class Timer : MonoBehaviour {
                     winnerScoreTextP1.GetComponent<Text>().text = ScoreManager.Get.GetScore(true) + "";
                     winnerSpriteP2.SetActive(false);
                     winnerScoreTextP2.SetActive(false);
+                    loserSpriteP1.SetActive(false);
+                    loserSpriteP2.SetActive(true);
                 }
                 else if (ScoreManager.Get.GetScore(true) < ScoreManager.Get.GetScore(false))
                 { // P2 wins
@@ -92,6 +96,8 @@ public class Timer : MonoBehaviour {
                     winnerSpriteP2.SetActive(true);
                     winnerScoreTextP2.SetActive(true);
                     winnerScoreTextP2.GetComponent<Text>().text = ScoreManager.Get.GetScore(false) + "";
+                    loserSpriteP1.SetActive(true);
+                    loserSpriteP2.SetActive(false);
                 }
                 else
                 { // P1 and P2 win
@@ -101,6 +107,8 @@ public class Timer : MonoBehaviour {
                     winnerSpriteP2.SetActive(true);
                     winnerScoreTextP2.SetActive(true);
                     winnerScoreTextP2.GetComponent<Text>().text = ScoreManager.Get.GetScore(false) + "";
+                    loserSpriteP1.SetActive(false);
+                    loserSpriteP2.SetActive(false);
                 }
             }
         } else if(gameCountdown) {
@@ -200,6 +208,8 @@ public class Timer : MonoBehaviour {
         winnerScoreTextP1.SetActive(false);
         winnerSpriteP2.SetActive(false);
         winnerScoreTextP2.SetActive(false);
+        loserSpriteP1.SetActive(false);
+        loserSpriteP2.SetActive(false);
 
         scoreP1Back.SetActive(false);
         scoreP2Back.SetActive(false);

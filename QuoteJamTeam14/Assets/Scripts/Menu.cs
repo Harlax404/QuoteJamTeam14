@@ -12,8 +12,12 @@ public class Menu : MonoBehaviour
     [SerializeField]
     private GameObject creditPanel;
 
+    [SerializeField]
+    private GameObject backgroundTitle;
+
     private bool mainpanelActiveSelf = true;
     private bool creditpanelActiveSelf = false;
+    private bool backgroundTitleActiveSelf = true;
 
     void Start()
     {
@@ -44,8 +48,11 @@ public class Menu : MonoBehaviour
         mainpanelActiveSelf = !mainpanelActiveSelf;
         creditpanelActiveSelf = !creditpanelActiveSelf;
 
+        backgroundTitleActiveSelf = !backgroundTitleActiveSelf;
+
         mainPanel.SetActive(mainpanelActiveSelf);
         creditPanel.SetActive(creditpanelActiveSelf);
+        backgroundTitle.SetActive(backgroundTitleActiveSelf);
 
         SoundManager.Get.Play(Sound.soundNames.MenuClick);
     }

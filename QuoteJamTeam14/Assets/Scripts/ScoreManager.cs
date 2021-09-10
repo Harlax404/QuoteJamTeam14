@@ -98,7 +98,7 @@ public class ScoreManager : MonoBehaviour
                 multiplierP1++;
                 multiplierTextP1.text = "x" + multiplierP1;
 
-                StartCoroutine(BounceRoutine(multiplierTextP1.gameObject));
+                StartCoroutine(BounceRoutine(multiplierTextP1.gameObject, maxScaleMultiplier, bounceDurationMultiplier));
 
                 if (multiplierP1 % milestoneForSound == 0)
                 {
@@ -113,7 +113,7 @@ public class ScoreManager : MonoBehaviour
                 multiplierP2++;
                 multiplierTextP2.text = "x" + multiplierP2;
 
-                StartCoroutine(BounceRoutine(multiplierTextP2.gameObject));
+                StartCoroutine(BounceRoutine(multiplierTextP2.gameObject, maxScaleMultiplier, bounceDurationMultiplier));
 
                 if (multiplierP2 % milestoneForSound == 0)
                 {
@@ -138,11 +138,11 @@ public class ScoreManager : MonoBehaviour
     private void Bounce(bool isP1)
     {
         if (isP1)
-            StartCoroutine(BounceRoutine(scoreP1.gameObject));
-        else StartCoroutine(BounceRoutine(scoreP2.gameObject));
+            StartCoroutine(BounceRoutine(scoreP1.gameObject, maxScale, bounceDuration));
+        else StartCoroutine(BounceRoutine(scoreP2.gameObject, maxScale, bounceDuration));
     }
 
-    IEnumerator BounceRoutine(GameObject obj)
+    IEnumerator BounceRoutine(GameObject obj, float scale, float duration)
     {
         float timer = 0;
         while (timer < bounceDuration)

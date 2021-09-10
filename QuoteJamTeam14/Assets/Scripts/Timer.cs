@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour {
     public bool restart = false;
 
     public Text timerText;
-    [SerializeField] GameObject timerBackground, scoreP1Back, scoreP2Back, scoreP1Text, scoreP2Text;
+    [SerializeField] GameObject timerBackground, scoreP1Back, scoreP2Back, scoreP1Text, scoreP2Text, comboTextP1, comboTextP2;
     [SerializeField]
     private GameObject startUI, p1NotReadyText, p1ReadyText, p2NotReadyText, p2ReadyText, restartButton, leaveButton;
 
@@ -25,7 +25,7 @@ public class Timer : MonoBehaviour {
 
     [SerializeField] GameObject keyBoardLayout;
 
-    [SerializeField] GameObject winnerSpriteP1, winnerSpriteP2;
+    [SerializeField] GameObject winnerSpriteP1, winnerScoreTextP1, winnerSpriteP2, winnerScoreTextP2;
 
     public static Timer Get;
     private void Awake()
@@ -38,10 +38,23 @@ public class Timer : MonoBehaviour {
     }
 
     void Start() {
+        winnerSpriteP1.SetActive(false);
+        winnerScoreTextP1.SetActive(false);
+        winnerSpriteP2.SetActive(false);
+        winnerScoreTextP2.SetActive(false);
+
+        scoreP1Back.SetActive(false);
+        scoreP2Back.SetActive(false);
+        scoreP1Text.SetActive(false);
+        scoreP2Text.SetActive(false);
+        comboTextP1.SetActive(false);
+        comboTextP2.SetActive(false);
+
         timerBackground.SetActive(false);
         timerText.gameObject.SetActive(false);
         matchStatusChange(false, true);
         gameStarted = gameCountdown = p1Ready = p2Ready = false;
+        keyBoardLayout.SetActive(true);
     }
 
     void Update() {
@@ -57,10 +70,32 @@ public class Timer : MonoBehaviour {
                 BonbonManager.Get.DestroyAllInput();
                 timerBackground.SetActive(false);
                 timerText.gameObject.SetActive(false);
-                scoreP1Back.SetActive(false);
-                scoreP2Back.SetActive(false);
-                scoreP1Text.SetActive(false);
-                scoreP2Text.SetActive(false);
+
+                comboTextP1.GetComponent<Text>().text = "x1";
+                comboTextP2.GetComponent<Text>().text = "x1";
+
+                comboTextP1.SetActive(false);
+                comboTextP2.SetActive(false);
+                /*if(ScoreManager.Get.GetScore(true) > ScoreManager.Get.GetScore(false)) { // P1 wins
+                    winnerSpriteP1.SetActive(true);
+                    winnerScoreTextP1.SetActive(true);
+                    winnerScoreTextP1.GetComponent<Text>().text = ScoreManager.Get.GetScore(true) + "";
+                    winnerSpriteP2.SetActive(false);
+                    winnerScoreTextP2.SetActive(false);
+                } else if(ScoreManager.Get.GetScore(true) < ScoreManager.Get.GetScore(false)) { // P2 wins
+                    winnerSpriteP1.SetActive(false);
+                    winnerScoreTextP1.SetActive(false);
+                    winnerSpriteP2.SetActive(true);
+                    winnerScoreTextP2.SetActive(true);
+                    winnerScoreTextP2.GetComponent<Text>().text = ScoreManager.Get.GetScore(false) + "";
+                } else { // P1 and P2 win
+                    winnerSpriteP1.SetActive(true);
+                    winnerScoreTextP1.SetActive(true);
+                    winnerScoreTextP1.GetComponent<Text>().text = ScoreManager.Get.GetScore(true) + "";
+                    winnerSpriteP2.SetActive(true);
+                    winnerScoreTextP2.SetActive(true);
+                    winnerScoreTextP2.GetComponent<Text>().text = ScoreManager.Get.GetScore(false) + "";
+                }*/
             }
         } else if(gameCountdown) {
             if(curTime > 0f)
@@ -138,6 +173,12 @@ public class Timer : MonoBehaviour {
     private void startGame() {
         timerBackground.SetActive(true);
         timerText.gameObject.SetActive(true);
+        scoreP1Back.SetActive(true);
+        scoreP2Back.SetActive(true);
+        scoreP1Text.SetActive(true);
+        scoreP2Text.SetActive(true);
+        comboTextP1.SetActive(true);
+        comboTextP2.SetActive(true);
 
         FeedbackManager.Get.vsAnimationIn();
         gameCountdown = true;
@@ -149,6 +190,16 @@ public class Timer : MonoBehaviour {
 
     public void RestartGame() 
     {
+        winnerSpriteP1.SetActive(false);
+        winnerScoreTextP1.SetActive(false);
+        winnerSpriteP2.SetActive(false);
+        winnerScoreTextP2.SetActive(false);
+
+        scoreP1Back.SetActive(false);
+        scoreP2Back.SetActive(false);
+        scoreP1Text.SetActive(false);
+        scoreP2Text.SetActive(false);
+
         ScoreManager.Get.ResetScore();
         startUI.SetActive(true);
         matchStatusChange(false, true);

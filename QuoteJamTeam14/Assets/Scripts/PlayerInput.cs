@@ -64,9 +64,11 @@ public class PlayerInput : MonoBehaviour {
 
         if (needSmashP1 && Input.GetKeyDown(KeyCode.V))
         {
+            SoundManager.Get.Play(Sound.soundNames.PimentSpam);
             ++currentSmashP1;
             if (currentSmashP1 >= nbSmash)
             {
+                SoundManager.Get.Play(Sound.soundNames.PimentDebarasse);
                 CanvasManager canvas = CanvasManager.Get;
                 currentSmashP1 = 0;
                 SetBlockMultiplier(true, false);
@@ -91,9 +93,11 @@ public class PlayerInput : MonoBehaviour {
 
         if (needsmashP2 && Input.GetKeyDown(KeyCode.P))
         {
+            SoundManager.Get.Play(Sound.soundNames.PimentSpam);
             ++currentSmashP2;
             if (currentSmashP2 >= nbSmash)
             {
+                SoundManager.Get.Play(Sound.soundNames.PimentDebarasse);
                 CanvasManager canvas = CanvasManager.Get;
                 currentSmashP2 = 0;
                 SetBlockMultiplier(false, false);

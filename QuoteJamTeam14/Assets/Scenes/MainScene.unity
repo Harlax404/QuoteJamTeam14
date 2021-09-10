@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66877a1780ceba246a56582d486fb927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyboardLayoutText: {fileID: 0}
+  keyboardLayoutText: {fileID: 1052488195}
   nbSmash: 20
 --- !u!4 &133472267
 Transform:
@@ -709,6 +709,17 @@ MonoBehaviour:
   bounceDuration: 0.3
   maxScaleMultiplier: 1.1
   bounceDurationMultiplier: 0.1
+--- !u!114 &1052488195 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3058537775271410266, guid: 95da4c2b31159e744ab1e479f31644cb, type: 3}
+  m_PrefabInstance: {fileID: 1488091905}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1121244558
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308602380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.2, y: 0.47, z: 0}
+  m_LocalPosition: {x: 4.2, y: 1.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 153286067}
@@ -1287,12 +1298,23 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498608706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.76, y: 0.47, z: 0}
+  m_LocalPosition: {x: -4.76, y: 1.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 153286067}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1540350259 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3058537774338141801, guid: 95da4c2b31159e744ab1e479f31644cb, type: 3}
+  m_PrefabInstance: {fileID: 1488091905}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1674967653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1534,7 @@ MonoBehaviour:
   timerValue: 10
   countdownValue: 3
   restart: 0
-  timerText: {fileID: 0}
+  timerText: {fileID: 1540350259}
   timerBackground: {fileID: 172775368}
   scoreP1Back: {fileID: 145814894}
   scoreP2Back: {fileID: 1376183728}

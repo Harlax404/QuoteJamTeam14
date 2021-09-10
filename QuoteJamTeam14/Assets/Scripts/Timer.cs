@@ -15,6 +15,7 @@ public class Timer : MonoBehaviour {
     public bool restart = false;
 
     public Text timerText;
+    [SerializeField] GameObject timerBackground, scoreP1Back, scoreP2Back, scoreP1Text, scoreP2Text;
     [SerializeField]
     private GameObject startUI, p1NotReadyText, p1ReadyText, p2NotReadyText, p2ReadyText, restartButton, leaveButton;
 
@@ -23,6 +24,8 @@ public class Timer : MonoBehaviour {
     private bool gameStarted, gameCountdown, p1Ready, p2Ready;
 
     [SerializeField] GameObject keyBoardLayout;
+
+    [SerializeField] GameObject winnerSpriteP1, winnerSpriteP2;
 
     public static Timer Get;
     private void Awake()
@@ -35,6 +38,8 @@ public class Timer : MonoBehaviour {
     }
 
     void Start() {
+        timerBackground.SetActive(false);
+        timerText.gameObject.SetActive(false);
         matchStatusChange(false, true);
         gameStarted = gameCountdown = p1Ready = p2Ready = false;
     }
@@ -47,6 +52,15 @@ public class Timer : MonoBehaviour {
                 curTime = 0f;
                 matchStatusChange(true, false);
                 gameStarted = p1Ready = p2Ready = false;
+                CanvasManager.Get.piment1.SetActive(false);
+                CanvasManager.Get.piment2.SetActive(false);
+                BonbonManager.Get.DestroyAllInput();
+                timerBackground.SetActive(false);
+                timerText.gameObject.SetActive(false);
+                scoreP1Back.SetActive(false);
+                scoreP2Back.SetActive(false);
+                scoreP1Text.SetActive(false);
+                scoreP2Text.SetActive(false);
             }
         } else if(gameCountdown) {
             if(curTime > 0f)
@@ -122,6 +136,9 @@ public class Timer : MonoBehaviour {
     }
 
     private void startGame() {
+        timerBackground.SetActive(true);
+        timerText.gameObject.SetActive(true);
+
         FeedbackManager.Get.vsAnimationIn();
         gameCountdown = true;
         startUI.SetActive(false);
@@ -132,7 +149,6 @@ public class Timer : MonoBehaviour {
 
     public void RestartGame() 
     {
-        BonbonManager.Get.DestroyAllInput();
         ScoreManager.Get.ResetScore();
         startUI.SetActive(true);
         matchStatusChange(false, true);

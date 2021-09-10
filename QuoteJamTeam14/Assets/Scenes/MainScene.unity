@@ -314,11 +314,15 @@ MonoBehaviour:
   bonbonSprites:
   - {fileID: 11400000, guid: 0c12b6a0605d2234c8fcb52b413f438e, type: 2}
   - {fileID: 11400000, guid: 745521e9fcd2fe948ade2b19578cd34d, type: 2}
+  - {fileID: 11400000, guid: 085502732caef3d46b5a797191bc3908, type: 2}
   bonbonSpritesGold:
   - {fileID: 11400000, guid: a04224d8b46cd5145b98c9137603e1be, type: 2}
   - {fileID: 11400000, guid: 97945b054e4e2be4bb2ac7c7bb26e1ed, type: 2}
+  - {fileID: 11400000, guid: a93c7ebbf6402b04489466f557404e31, type: 2}
   emballageSprites:
   - {fileID: 11400000, guid: 9d9e15fbdc7df4e4ab5daafa880bafe6, type: 2}
+  - {fileID: 11400000, guid: 44cfbfe2d7eaa67468880f696d478a31, type: 2}
+  - {fileID: 11400000, guid: 2634fb99bb26da149b12bd628737035b, type: 2}
   nbEasyInput: 3
   nbMediumInput: 4
   nbHardInput: 6
